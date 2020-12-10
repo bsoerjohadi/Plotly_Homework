@@ -1,6 +1,6 @@
 // Bar chart for top 10 OTUs
 // Fetch the JSON data
-d3.json('../../samples.json').then((data) => {
+d3.json('samples.json').then((data) => {
     console.log(data)
 // Create traces for top 10 OTUs
     var OTUid = data.samples[0].otu_ids.slice(0, 10).reverse()
@@ -34,7 +34,7 @@ d3.json('../../samples.json').then((data) => {
 }); 
 
 // Bubble chart of each sample
-d3.json('../../samples.json').then((data) => {
+d3.json('samples.json').then((data) => {
     var OTUid = data.samples[0].otu_ids
     var sampleValues = data.samples[0].sample_values
     var label = data.samples[0].otu_labels
@@ -60,7 +60,7 @@ d3.json('../../samples.json').then((data) => {
 });
 
 //Displaying sample metadata
-d3.json('../../samples.json').then((data) => {
+d3.json('samples.json').then((data) => {
     var id = data.metadata[0].id
     var ethnicity = data.metadata[0].ethnicity
     var gender = data.metadata[0].gender
@@ -82,7 +82,7 @@ d3.json('../../samples.json').then((data) => {
    
 // Dropdown menu
 function getDemInfo() {
-    d3.json("../../samples.json").then((data) => {
+    d3.json("samples.json").then((data) => {
         var subjects = data.metadata
         var id = subjects.map(data => data.id)
         var dropdown = d3.select("#selDataset")
@@ -102,14 +102,14 @@ function optionChanged(id) {
 };
 
 function updatePlotly(id){
-    d3.json("../../samples.json").then((data) => {
+    d3.json("samples.json").then((data) => {
         var subjects = data.metadata;
         var search = subjects.filter(data => data.id.toString() == id)[0];
         console.log(search)
         var demInfo = d3.select("#sample-metadata");
         demInfo.html("");
 
-            d3.json('../../samples.json').then((data) => {
+            d3.json('samples.json').then((data) => {
                 var searchid = subjects.filter(data => data.id.toString() == id)[0]["id"]
                 var searchethnicity = subjects.filter(data => data.id.toString() == id)[0]["ethnicity"]
                 var searchgender = subjects.filter(data => data.id.toString() == id)[0]["gender"]
